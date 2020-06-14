@@ -27,45 +27,49 @@ function saveToDos() {
 
 function paintToDo(text) {
 	const content = text;
-	const li = document.createElement('li');
-	const span = document.createElement('span');
-
-	const delBtn = document.createElement('button');
+       const li = document.createElement('li');
+	   const span = document.createElement('span');
     
-    delBtn.classList.add('btn');
-    delBtn.classList.add('btn-danger');
+	   const delBtn = document.createElement('button');
     
-	const newId = toDos.length + 1;
-
-	delBtn.innerText = 'Done';
-    delBtn.addEventListener("click", deleteToDo);
-	span.innerText = content;
-	span.classList.add('span-deco');
-    li.appendChild(delBtn);
-	li.appendChild(span);
+        delBtn.classList.add('btn');
+        delBtn.classList.add('btn-danger');
     
-	li.id = newId; //->important!!  id="1"
-    li.classList.add("li_pre");
-	ul.appendChild(li);
-	const toDoObj = {
-		text: text,
-		id: newId
-	};
+	   const newId = toDos.length + 1;
 
-	toDos.push(toDoObj);
-    num = toDos.length;
-    console.log(num);
-	saveToDos();
+	   delBtn.innerText = 'Done';
+        delBtn.addEventListener("click", deleteToDo);
+	   span.innerText = content;
+        span.classList.add('span-deco');
+        li.appendChild(delBtn);
+        li.appendChild(span);
+    
+	   li.id = newId; //->important!!  id="1"
+        li.classList.add("li_pre");
+	   ul.appendChild(li);
+        const toDoObj = {
+            text: text,
+		  id: newId
+	   };
+
+        toDos.push(toDoObj);
+        num = toDos.length;
+        console.log(num);
+	   saveToDos();
+	
 }
 
 function handleSubmit(event) {
 	event.preventDefault();
-	const content = input_.value;
-	if(num < 5) paintToDo(content);
+    if(input_.value === "") alert("Thing should not be empty");
     else{
-        alert("can't load more than 5.");
+        const content = input_.value;
+	   if(num < 5) paintToDo(content);
+        else{
+            alert("can't load more than 5.");
+        }
+	   input_.value = '';   
     }
-	input_.value = '';
 }
 
 function something(toDo) {
