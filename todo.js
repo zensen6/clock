@@ -4,6 +4,8 @@ const todo = document.querySelector('.js-toDoForm'),
 
 const TODOS_LS = 'toDos';
 
+
+let num = 0;
 let toDos = [];
 
 function deleteToDo(event) {
@@ -15,9 +17,11 @@ function deleteToDo(event) {
   });
   toDos = cleanToDos;
   saveToDos();
+  num = toDos.length;
 }
 
 function saveToDos() {
+    
 	localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
 }
 
@@ -27,14 +31,21 @@ function paintToDo(text) {
 	const span = document.createElement('span');
 
 	const delBtn = document.createElement('button');
+    
+    delBtn.classList.add('btn');
+    delBtn.classList.add('btn-danger');
+    
 	const newId = toDos.length + 1;
 
-	delBtn.innerText = 'X';
+	delBtn.innerText = 'Done';
     delBtn.addEventListener("click", deleteToDo);
 	span.innerText = content;
-	li.appendChild(delBtn);
+	span.classList.add('span-deco');
+    li.appendChild(delBtn);
 	li.appendChild(span);
+    
 	li.id = newId; //->important!!  id="1"
+    li.classList.add("li_pre");
 	ul.appendChild(li);
 	const toDoObj = {
 		text: text,
@@ -42,13 +53,18 @@ function paintToDo(text) {
 	};
 
 	toDos.push(toDoObj);
+    num = toDos.length;
+    console.log(num);
 	saveToDos();
 }
 
 function handleSubmit(event) {
 	event.preventDefault();
 	const content = input_.value;
-	paintToDo(content);
+	if(num < 5) paintToDo(content);
+    else{
+        alert("can't load more than 5.");
+    }
 	input_.value = '';
 }
 
