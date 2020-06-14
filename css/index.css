@@ -1,0 +1,65 @@
+h1 {
+  color: purple;
+  transition: color 0.5s ease-in-out;
+}
+
+h4{
+    color:lime;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+body {
+  color: darkgrey;
+}
+
+.clicked {
+  color: #7f8c8d;
+}
+
+.form,
+.greetings,{
+  display: none;
+}
+
+.showing {
+  display: block;
+  animation: function 3s;
+}
+
+@keyframes function{
+    0%{
+        color: white;
+    }
+    100%{
+        color: lawngreen;
+    }
+}
+
+.invisible{
+  display: none;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+
+    }
+    to{
+        opacity: 1;
+    }
+    
+}
+
+.bgImage{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    animation: fadeIn 2s linear;
+    
+}
